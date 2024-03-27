@@ -1,3 +1,6 @@
+<?php
+include_once("/var/www/_templates/config/public/config-medicare.php");
+?>
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" description="noindex,nofollow,noarchive">
   <title>Meet Seniors</title>
-
+  <meta name="description" content="Call in to find out if you qualify." />
+  <meta name="keywords" content="Affordable Care Act, ACA" />
   <link href="assets/css/style.css" rel="stylesheet" media="all" />
   <style>
     .typing-animation {
@@ -46,13 +50,14 @@
 </head>
 
 <body>
-
+  <a href="https://cdn.sppoints.xyz/click" style="display: none" id="rtRef"></a>
+  <input id="hdnApprovalStatus" type="hidden" />
 
   <main class="min-h-screen">
     <div class="max-w-4xl mx-auto bg-white text-center text-gray-600">
       <div class="p-4">
         <p class="font-serif text-md sm:text-lg font-bold mt-2">
-          <span class="text-red-600">Important:</span> Registration is open on
+          <span class="text-red-600">Warning:</span> Enrollment closes on
           <span id="currentDate">Tuesday, 07/11/2023</span> at midnight.
         </p>
         <h2 class="font-bold text-xl sm:text-3xl mt-1">
@@ -65,7 +70,7 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-500"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-green-500"></span>
           </span>
-          Meet-Seniors.com is Online.
+           Meet-Seniors.com is Online.
         </div>
       </div>
     </div>
@@ -91,11 +96,11 @@
                   <p class="text-md text-gray-800">Hi 👋</p>
                 </div>
                 <div id="msg2" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                  <p class="text-md text-gray-800">Welcome to Meet Seniors.</p>
+                  <p class="text-md text-gray-800">Welcome to Meet-Seniors.com</p>
                 </div>
                 <div id="msg3" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p class="text-md text-gray-800">
-                    Are you interested in meeting Seniors looking for a relationship near you? (Note to Ophir: Can have a dynamic city tag here)
+                    Are you interested in meeting Seniors looking for a relationship near Los Angeles? (Note to Ophir: Can have a dynamic city tag here)
                   </p>
                 </div>
                 <div id="msg4" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
@@ -171,7 +176,7 @@
               <div class="ml-3 agent-chat">
                 <div id="msg10" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p class="text-md text-gray-800">
-                    Are you single? Tap Yes or No.
+                    Are you interested in meeting someone in the next 2 weeks?
                   </p>
                 </div>
                 <div id="msg11" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
@@ -211,32 +216,37 @@
                 </div>
                 <div id="msg14" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p id="msg14approved" class="text-md text-gray-800 hidden">
-                    You have qualified to join our exclusive Meet Seniors community.
+                    After signing up you will be routed to the best dating community, specifically tailored to you. 
                   </p>
                   <p id="msg14disapproved" class="text-md text-gray-800 hidden">
-                    After signing up you will be routed to the best dating community, specifically tailored to you. 
+                    You're pre-qualified for a $2,750 Grocery Flex Card.
                   </p>
                 </div>
                 <div id="msg15" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p class="text-md text-gray-800">
-                    You will be able to meet eligible singles in your town right after signing up. 
+                    You can use the savings Cover Groceries, Medicine, and Other Expenses.
                   </p>
                 </div>
                 <div id="msg16" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p id="msg16approved" class="text-md text-gray-800 hidden">
-                    All of our members are real singles, looking for long term relationship, don't let them down. 
+                    All of our members are real singles, looking for long term relationship, don't let them down. You will be expected to respond to every elibile message.
                   </p>
                   <p id="msg16disapproved" class="text-md text-gray-800 hidden">
-                    Tap the sign up button below. 
+                    Tap the sign up button below to sign up.
                   </p>
                   <p class="text-md text-gray-800">
-                    Please be sure to confirm your email within 2 hours of signing up to be considered active.
+                    Please be sure to confirm your email within 2 hours of signing up to be considered active. If you don't, your profile may be hidden and you will not be matched.
                   </p>
                 </div>
                 <div id="msg17" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                   <p class="text-md text-gray-800 py-2">
-<button class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn" onclick="window.location.href='https://www.meet-seniors.com'">Sign Up to Meet Seniors</button>
-
+                    <a id="PrimaryNumber" href="tel:<?php echo $ringbaNumberPrimaryTel; ?>" "
+                      class=" chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 hidden ttc-button">
+                      <?php echo $ringbaNumberPrimary; ?>
+                    </a>
+                    <a id="DownsellNumber" href="tel:<?php echo $ringbaNumberDownsellTel; ?>" class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 hidden">
+                      <?php echo $ringbaNumberDownsell; ?>
+                    </a>
                   </p>
                 </div>
 
@@ -247,9 +257,12 @@
                 </div>
 
                 <div id="msg19" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                  <p class="text-md text-gray-800">BUT... you do qualify for the offers below (Ophir: We can redirect to fantasy spin or something)</p>
+                  <p class="text-md text-gray-800">BUT... you do qualify for the offers below (Ophir: We can redirect to fantasy spin, eDate or something)</p>
                 </div>
-                
+                <div id="msg20" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                  <button class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-12" type="button" onclick="window.location.href='<?php echo $mbOfferSite; ?>'">
+                    Sign Up for Edate
+                  </button>
                 </div>
               </div>
             </div>
@@ -289,7 +302,7 @@
 
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-
+  <script type="text/javascript" src="https://cdn.sppoints.xyz/track.js?rtkcmpid=<?php echo $rtkCmpId; ?>"></script>
 
 </body>
 
